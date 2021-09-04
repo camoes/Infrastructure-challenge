@@ -1,8 +1,8 @@
 data "archive_file" "lambda_producer" {
   type = "zip"
 
-  source_dir  = "${path.module}/producer"
-  output_path = "${path.module}/producer.zip"
+  source_dir  = "../application/producer"
+  output_path = "../application/producer.zip"
 }
 
 resource "aws_s3_bucket_object" "lambda_producer" {
@@ -17,8 +17,8 @@ resource "aws_s3_bucket_object" "lambda_producer" {
 data "archive_file" "lambda_consumer" {
   type = "zip"
 
-  source_dir  = "${path.module}/consumer"
-  output_path = "${path.module}/consumer.zip"
+  source_dir  = "../application/consumer"
+  output_path = "../application/consumer.zip"
 }
 
 resource "aws_s3_bucket_object" "lambda_consumer" {
