@@ -9,6 +9,7 @@ resource "aws_apigatewayv2_stage" "lambda" {
   name        = "serverless_lambda_stage"
   auto_deploy = true
 
+//Configure log format for the request to the apigateway
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.api_gw.arn
 
@@ -28,26 +29,39 @@ resource "aws_apigatewayv2_stage" "lambda" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "api_gw" {
+  name = "/aws/api_gw/${aws_apigatewayv2_api.lambda.name}"
+
+  retention_in_days = 30
+}
+
+// we check the request is in the desired json format 
 resource "aws_apigatewayv2_integration" "producer" {
   api_id = aws_apigatewayv2_api.lambda.id
 
   integration_uri    = aws_lambda_function.producer.invoke_arn
   integration_type   = "AWS_PROXY"
   integration_method = "POST"
+  request_templates = {                  # Specifing desired json format
+    "application/json" = "${file("api_gateway_body_mapping.json")}"
+  }
 }
 
+resource "aws_api_gateway_request_validator" "producer" {
+  name                        = "POSTProducerRequestValidator"
+  rest_api_id                 = aws_api_gateway_rest_api.producer.id
+  validate_request_body       = true
+  validate_request_parameters = false
+}
+
+//Route the response to the ProducerLambda function
 resource "aws_apigatewayv2_route" "producer" {
   api_id = aws_apigatewayv2_api.lambda.id
 
-  route_key = "GET /hello"
+  route_key = "$default" //This should be changed for the desired endpoint to trigger de request for the lambda, which hasn't been defined 
   target    = "integrations/${aws_apigatewayv2_integration.producer.id}"
 }
 
-resource "aws_cloudwatch_log_group" "api_gw" {
-  name = "/aws/api_gw/${aws_apigatewayv2_api.lambda.name}"
-
-  retention_in_days = 30
-}
 
 resource "aws_lambda_permission" "api_gw" {
   statement_id  = "AllowExecutionFromAPIGateway"
@@ -57,3 +71,4 @@ resource "aws_lambda_permission" "api_gw" {
 
   source_arn = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
 }
+//
