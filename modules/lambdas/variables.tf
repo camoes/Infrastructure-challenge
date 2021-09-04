@@ -1,3 +1,5 @@
+//Variables used in the repo
+
 variable "handler" {
   default = "lambda.handler"
 }
