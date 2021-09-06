@@ -43,7 +43,7 @@ resource "aws_apigatewayv2_integration" "producer" {
   integration_type   = "AWS_PROXY"
   integration_method = "POST"
   request_templates = {                  # Specifing desired json format
-    "application/json" = "${file("api_gateway_body_mapping.json")}"
+    "application/json" = "${file("../files/api_gateway_body_mapping.json")}"
   }
 }
 

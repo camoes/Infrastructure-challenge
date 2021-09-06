@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"apigateway","Source":"./modules/apigateway","Dir":"modules/apigateway"},{"Key":"cloudwatch","Source":"./modules/cloudwatch-metrics","Dir":"modules/cloudwatch-metrics"},{"Key":"lambdas","Source":"./modules/lambdas","Dir":"modules/lambdas"},{"Key":"s3","Source":"./modules/s3","Dir":"modules/s3"}]}
