@@ -62,6 +62,17 @@ jobs:
         shell: bash
 
     steps:
+    #Before we start the terraform process, we download the artifact from the previous job using the github action REST API https://docs.github.com/en/rest/reference/actions#list-artifacts-for-a-repository
+    - name: Download artifact
+      on:
+        workflow_run: #we only trigger this job if the previous work has been completed, that way  we ensure refreshness in the data
+          workflows: ["ZIP File Consumer"]
+          types:
+            - completed
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: "ZIP File Consumer"
+        workflow_conclusion: success
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
