@@ -22,8 +22,8 @@ module "lambdas" {
   source = "./modules/lambdas"
 }
 
-module "cloudwatch" {
-  source = "./modules/cloudwatch-metrics"
-}
+//module "cloudwatch" {
+//  source = "./modules/cloudwatch-metrics"
+//}
 
 
