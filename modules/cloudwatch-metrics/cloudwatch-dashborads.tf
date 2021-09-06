@@ -1,11 +1,3 @@
-provider "aws" {
-  profile = "default"
-  region  = "ap-southeast-1"
-  assume_role {
-    role_arn = "${var.provider_env_roles[terraform.workspace]}"
-  }
-}
-
 locals {
   common_tags = {
     Owner_Name       = "cloud-watch"
