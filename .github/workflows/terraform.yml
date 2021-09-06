@@ -92,9 +92,6 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
-    - name: Terraform Force
-      run: terraform force-unlock 
-
    # - name: Terraform Validate
    #   id: validate
    #   run: terraform validate -no-color
