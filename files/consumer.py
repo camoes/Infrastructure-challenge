@@ -1,6 +1,8 @@
 import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
+#using the python AWS libraries for storing the events logger.info
+
 
 def lambda_handler(event, context):
     data = event.get('data')
