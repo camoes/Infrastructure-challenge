@@ -19,7 +19,7 @@ module "s3" {
 }
 
 module "lambdas" {
-  source   = "./modules/lambdas"
+  source = "./modules/lambdas"
 }
 
 module "cloudwatch" {
