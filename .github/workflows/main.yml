@@ -13,9 +13,8 @@ on:
     branches: [ main ]
     # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
 jobs:
-    name: Zip-consumer
+  - name: Zip-consumer
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,17 +22,21 @@ jobs:
         with:
           files: files/consumer.py
           dest:  consumer.zip
-    name: Zip-producer
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+  - name: Zip-producer
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - uses: actions/checkout@v2
       - uses: papeloto/action-zip@v1
         with:
           files: files/producer.py
           dest:  producer.zip
-#uploading the files.zip as artifacts to be retrieved by the other workflow
-    name: Upload-zips 
+ 
+  - name: Upload-zips
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: files/*.zip
+         name: my-artifact
+         path: files/*.zip
