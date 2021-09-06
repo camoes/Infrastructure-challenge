@@ -63,7 +63,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2 
     #Before we start the terraform process, we download the artifact from the previous job using the github action REST API https://docs.github.com/en/rest/reference/actions#list-artifacts-for-a-repository
     - name: Download artifact
       uses: dawidd6/action-download-artifact@v2
@@ -86,7 +86,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform init
+      run: terraform init -migrate-state
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
