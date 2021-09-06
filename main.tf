@@ -10,17 +10,18 @@ terraform {
   }
 }
 
-module "apigateway" {
-  source = "./modules/apigateway"
+
+module "lambdas" {
+  source = "./modules/lambdas"
 }
 
 module "s3" {
   source = "./modules/s3"
 }
-
-module "lambdas" {
-  source = "./modules/lambdas"
+module "apigateway" {
+  source = "./modules/apigateway"
 }
+
 
 //module "cloudwatch" {
 //  source = "./modules/cloudwatch-metrics"
