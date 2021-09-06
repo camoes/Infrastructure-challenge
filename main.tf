@@ -5,7 +5,7 @@ terraform {
     bucket         = "vimcar-challenge-tfestate-cmontesinos"
     key            = "terraform.tfstate"
     region         = "eu-west-1"
-    dynamodb_table = "aws-locks"
+    dynamodb_table = "aws-locks-cmontesinos"
     encrypt        = true
   }
 }
