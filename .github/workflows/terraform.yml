@@ -69,7 +69,7 @@ jobs:
       if: ${{ github.event.workflow_run.conclusion == 'success' }} #we ensure that the previous workflow has been triggered in order to retrieve the artifact
       uses: dawidd6/action-download-artifact@v2
       with:
-        workflow: "Zip-Uploader"
+        workflow: main.yml
         workflow_conclusion: completed
     # Checkout the repository to the GitHub Actions runner
 
