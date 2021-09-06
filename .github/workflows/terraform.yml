@@ -91,7 +91,10 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
- 
+
+    - name: Terraform Force
+      run: terraform force-unlock 
+
    # - name: Terraform Validate
    #   id: validate
    #   run: terraform validate -no-color
