@@ -33,7 +33,7 @@ jobs:
           dest:  producer.zip
 #uploading the files.zip as artifacts to be retrieved by the other workflow
     name: Upload-zips 
-     - uses: actions/upload-artifact@v2
-       with:
+      - uses: actions/upload-artifact@v2
+        with:
           name: my-artifact
           path: files/*.zip
