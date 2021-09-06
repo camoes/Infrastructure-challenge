@@ -13,19 +13,11 @@ on:
     branches: [ main ]
     # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-jobs:
-  zipping:
-    name: 'Zipping'
-    runs-on: ubuntu-latest
-    environment: production
-
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
-    steps:
-      - Upload-zips:
-            uses: actions/upload-artifact@v2
-            with:
-              name: my-artifact
-              path: ${{ github.workspace }}/files/
+jobs: 
+    Upload-zips:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/upload-artifact@v2
+          with:
+            name: my-artifact
+            path: files/*.zip
