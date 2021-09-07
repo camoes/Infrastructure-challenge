@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "lambda_bucket_producer" {
-  bucket = consumer.lambda_bucket_name.id
+  bucket = "lambda_bucket_producer"
 
   acl           = "private"
   force_destroy = true
@@ -24,7 +24,7 @@ resource "aws_s3_bucket_object" "lambda_producer_object" {
   etag = filemd5(data.archive_file.lambda_producer_file.output_path)
 }
 resource "aws_s3_bucket" "lambda_bucket_consumer" {
-  bucket = producer.lambda_bucket_name.id
+  bucket = "lambda_bucket_consumer"
 
   acl           = "private"
   force_destroy = true
