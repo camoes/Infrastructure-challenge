@@ -1,7 +1,11 @@
+
+provider "aws" {
+  region = var.aws_region
+}
 resource "aws_lambda_function" "producer" {
   function_name = "lambda_producer"
 
-  s3_bucket = aws_s3_bucket.lambda_bucket_producer.id
+  s3_bucket = aws_s3_bucket.lambda-bucket-producer.id
   s3_key    = aws_s3_bucket_object.lambda_producer_object.key
 
   handler          = "${var.handler}"
@@ -14,7 +18,7 @@ resource "aws_lambda_function" "producer" {
 resource "aws_lambda_function" "consumer" {
   function_name = "lambda_consumer"
 
-  s3_bucket = aws_s3_bucket.lambda_bucket_consumer.id
+  s3_bucket = aws_s3_bucket.lambda-bucket-consumer.id
   s3_key    = aws_s3_bucket_object.lambda_consumer_object.key
 
   handler          = "${var.handler}"
