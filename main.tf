@@ -11,13 +11,13 @@ terraform {
 }
 
 
+module "s3" {
+  source = "./modules/s3"
+}
 module "lambdas" {
   source = "./modules/lambdas"
 }
 
-module "s3" {
-  source = "./modules/s3"
-}
 module "apigateway" {
   source = "./modules/apigateway"
 }

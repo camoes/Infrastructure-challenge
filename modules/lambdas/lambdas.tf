@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "producer" {
   function_name = "lambda_producer"
 
-  s3_bucket = aws_s3_bucket.lambda_bucket.id
+  s3_bucket = aws_s3_bucket.lambda_producer.id
   s3_key    = aws_s3_bucket_object.lambda_producer.key
 
   handler          = "${var.handler}"
@@ -14,7 +14,7 @@ resource "aws_lambda_function" "producer" {
 resource "aws_lambda_function" "consumer" {
   function_name = "lambda_consumer"
 
-  s3_bucket = aws_s3_bucket.lambda_bucket.id
+  s3_bucket = aws_s3_bucket.lambda_consumer.id
   s3_key    = aws_s3_bucket_object.lambda_consumer.key
 
   handler          = "${var.handler}"
