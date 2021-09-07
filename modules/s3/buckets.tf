@@ -20,7 +20,7 @@ data "archive_file" "lambda_producer" {
 }
 
 resource "aws_s3_bucket_object" "lambda_producer" {
-  bucket = aws_s3_bucket.lambda_bucket.id
+  bucket = aws_s3_bucket.lambda_bucket_producer.id
 
   key    = "producer.zip"
   source = data.archive_file.lambda_producer.output_path
@@ -40,7 +40,7 @@ data "archive_file" "lambda_consumer" {
 }
 
 resource "aws_s3_bucket_object" "lambda_consumer" {
-  bucket = aws_s3_bucket.lambda_bucket.id
+  bucket = aws_s3_bucket.lambda_bucket_consumer.id
 
   key    = "consumer.zip"
   source = data.archive_file.lambda_consumer.output_path
