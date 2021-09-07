@@ -1,7 +1,12 @@
-output "lambda_producer" {
-  value = aws_lambda_function.producer.id
+
+output "function_name" {
+  description = "Name of the Lambda function producer."
+
+  value = aws_lambda_function.producer.function_name
 }
 
-output "lambda_consumer" {
-  value = aws_lambda_function.consumer.id
+output "function_name" {
+  description = "Name of the Lambda function consumer."
+
+  value = aws_lambda_function.consumer.function_name
 }
