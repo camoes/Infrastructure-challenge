@@ -14,9 +14,9 @@ terraform {
 module "s3" {
   source = "./modules/s3"
 }
-// module "lambdas" {
-//  source = "./modules/lambdas"
-//}
+ module "lambdas" {
+  source = "./modules/lambdas"
+}
 
 //module "apigateway" {
 //  source = "./modules/apigateway"
