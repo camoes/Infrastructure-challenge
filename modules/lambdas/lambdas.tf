@@ -12,7 +12,7 @@ resource "aws_lambda_function" "producer" {
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
 
-  source_code_hash = "${var.source_code_hash_producer}"
+  source_code_hash = "${module.s3_vimcar.lambda_producer_file}"
 
   role = aws_iam_role.lambda_exec.arn
 }
