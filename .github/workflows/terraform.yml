@@ -100,7 +100,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform force-unlock -force eab91db7-35e0-768f-1e5b-136a64e3b88a
+      run: terraform force-unlock -force f19003f6-fa47-3ac6-4f93-ea5482a2bd46
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
