@@ -9,7 +9,6 @@ resource "aws_lambda_function" "producer" {
 
   s3_bucket = "lambda-bucket-producer"
   s3_key    = "lambda_producer_object"
-  filename  = "producer.zip"
 
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
@@ -19,7 +18,6 @@ resource "aws_lambda_function" "producer" {
 }
 resource "aws_lambda_function" "consumer" {
   function_name = "lambda_consumer"
-  filename  = "consumer.zip"
   s3_bucket = "lambda-bucket-consumer"
   s3_key    = "lambda_producer_object"
 
