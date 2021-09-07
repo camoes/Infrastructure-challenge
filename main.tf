@@ -9,12 +9,12 @@ terraform {
     encrypt        = true
   }
 }
-module "s3" {
+module "s3_vimcar" {
   source = "./modules/s3"
 }
-module "lambdas" {
+module "lambdas_vimcar" {
   source                    = "./modules/lambdas"
-  source_code_hash_producer = module.s3.lambda_producer_file
+  source_code_hash_producer = module.s3_vimcar.lambda_producer_file
 }
 
 //module "apigateway" {
