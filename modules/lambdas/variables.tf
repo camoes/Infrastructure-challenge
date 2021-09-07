@@ -15,5 +15,5 @@ variable "aws_region" {
   default = "eu-west-1"
 }
 variable "source_code_hash_producer" {
-      value = module.s3_vimcar.lambda_producer_file
+      default  = module.s3_vimcar.lambda_producer_file
 }
