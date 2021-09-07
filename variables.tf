@@ -1,4 +1,6 @@
+variable "aws_region" {
+  description = "AWS region for all resources."
 
-variable "region" {
+  type    = string
   default = "eu-west-1"
 }

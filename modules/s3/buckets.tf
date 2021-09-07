@@ -1,3 +1,6 @@
+provider "aws" {
+  region = var.aws_region
+}
 resource "random_pet" "lambda_bucket_name" {
   
     # Generate a new pet name each time we switch to a new bucket id
@@ -15,8 +18,8 @@ resource "aws_s3_bucket" "lambda_bucket_producer" {
 data "archive_file" "lambda_producer_file" {
   type = "zip"
 
-  source_dir  = "../files/producer"
-  output_path = "../files/producer.zip"
+  source_dir  = "${path.module}/files/"
+  output_path = "${path.module}/files/producer.zip"
 }
 
 resource "aws_s3_bucket_object" "lambda_producer_object" {
@@ -35,8 +38,8 @@ resource "aws_s3_bucket" "lambda_bucket_consumer" {
 data "archive_file" "lambda_consumer_file" {
   type = "zip"
 
-  source_dir  = "../files/consumer"
-  output_path = "../files/consumer.zip"
+  source_dir  = "${path.module}/files/"
+  output_path = "${path.module}/files/consumer.zip"
 }
 
 resource "aws_s3_bucket_object" "lambda_consumer_object" {
