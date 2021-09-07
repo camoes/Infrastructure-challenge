@@ -1,7 +1,7 @@
 output "lambda_producer" {
-  value = aws_s3_bucket.producer.id
+  value = aws_s3_bucket.lambada_bucket_producer.id
 }
 
 output "lambda_consumer" {
-  value = aws_s3_bucket.consumer.id
+  value = aws_s3_bucket.lambada_bucket_consumer.id
 }
