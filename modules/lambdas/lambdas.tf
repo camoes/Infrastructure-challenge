@@ -3,6 +3,9 @@ provider "aws" {
   region = var.aws_region
 }
 
+variable "source_code_hash_producer" {
+      type = "string"
+}
 
 resource "aws_lambda_function" "producer" {
   function_name = "lambda_producer"
@@ -13,7 +16,7 @@ resource "aws_lambda_function" "producer" {
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
 
-  source_code_hash = module.s3.lambda_producer_file
+  source_code_hash = "${source_code_hash_producer}"
 
   role = aws_iam_role.lambda_exec.arn
 }
@@ -26,7 +29,6 @@ resource "aws_lambda_function" "consumer" {
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
 
-  source_code_hash = module.s3.lambda_consumer_file
 
   role = aws_iam_role.lambda_exec.arn
 }
