@@ -34,7 +34,9 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 
   retention_in_days = 30
 }
-
+data "aws_lambda" "producer" {
+  id = var.lambda_id
+}
 // we check the request is in the desired json format 
 resource "aws_apigatewayv2_integration" "producer" {
   source = "../lambdas/lambdas.tf"
