@@ -97,6 +97,9 @@ jobs:
       run: terraform validate -no-color
     
     - name: Terraform unlock
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform force-unlock -force eab91db7-35e0-768f-1e5b-136a64e3b88a
 
     # Generates an execution plan for Terraform
