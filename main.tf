@@ -14,7 +14,7 @@ module "s3" {
 }
 module "lambdas" {
   source                    = "./modules/lambdas"
-  source_code_hash_producer = "${module.s3.lambda_consumer_file}"
+  source_code_hash_producer = module.s3.lambda_producer_file
 }
 
 //module "apigateway" {
