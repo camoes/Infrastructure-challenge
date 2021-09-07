@@ -6,19 +6,20 @@ provider "aws" {
 resource "aws_lambda_function" "producer" {
   function_name = "lambda_producer"
 
+
   s3_bucket = "lambda-bucket-producer"
   s3_key    = "lambda_producer_object"
+  filename  = "producer.zip"
 
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
 
-  source_code_hash = "${module.s3_vimcar.lambda_producer_file}"
 
   role = aws_iam_role.lambda_exec.arn
 }
 resource "aws_lambda_function" "consumer" {
   function_name = "lambda_consumer"
-
+  filename  = "consumer.zip"
   s3_bucket = "lambda-bucket-consumer"
   s3_key    = "lambda_producer_object"
 
