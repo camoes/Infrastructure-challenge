@@ -13,8 +13,8 @@ module "s3" {
   source = "./modules/s3"
 }
 module "lambdas" {
-  source = "./modules/lambdas"
-    source_code_hash_producer = "${module.s3.archive_file.lambda_producer_file.output_base64sha256}"
+  source                    = "./modules/lambdas"
+  source_code_hash_producer = module.s3.archive_file.lambda_producer_file.output_base64sha256
 
 }
 
