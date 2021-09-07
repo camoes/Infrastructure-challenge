@@ -15,5 +15,6 @@ variable "aws_region" {
   default = "eu-west-1"
 }
 variable "source_code_hash_producer" {
-  
+  type = string
+
 }
