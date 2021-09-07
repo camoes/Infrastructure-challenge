@@ -14,7 +14,7 @@ module "s3" {
 }
 module "lambdas" {
   source = "./modules/lambdas"
-  source_code_hash_producer = "${data.archive_file.lambda_producer_file.output_base64sha256}"
+  source_code_hash_producer = "${s3.archive_file.lambda_producer_file.output_base64sha256}"
 }
 
 //module "apigateway" {
