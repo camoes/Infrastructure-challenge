@@ -3,10 +3,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-variable "source_code_hash_producer" {
-      type = string
-}
-
 resource "aws_lambda_function" "producer" {
   function_name = "lambda_producer"
 
@@ -28,7 +24,6 @@ resource "aws_lambda_function" "consumer" {
 
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
-
 
   role = aws_iam_role.lambda_exec.arn
 }
