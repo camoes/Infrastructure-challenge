@@ -13,7 +13,7 @@ resource "aws_lambda_function" "producer" {
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
 
-  source_code_hash = "${archive_file.lambda_producer_file.output_base64sha256}"
+  source_code_hash = module.s3.lambda_producer_file
 
   role = aws_iam_role.lambda_exec.arn
 }
@@ -26,7 +26,7 @@ resource "aws_lambda_function" "consumer" {
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
 
-  source_code_hash = "${archive_file.lambda_consumer_file.output_base64sha256}"
+  source_code_hash = module.s3.lambda_consumer_file
 
   role = aws_iam_role.lambda_exec.arn
 }
