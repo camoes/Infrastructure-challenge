@@ -7,8 +7,8 @@ output "lambda_consumer" {
 }
 
 output "lambda_producer_file" {
-  value = archive_file.lambda_producer_file
+  value = "${archive_file.lambda_producer_file.output_base64sha256}"
 }
 output "lambda_consumer_file" {
-  value = archive_file.lambda_consumer_file
+  value = "${archive_file.lambda_consumer_file.output_base64sha256}"
 }
