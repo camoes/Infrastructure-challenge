@@ -12,19 +12,19 @@ resource "aws_s3_bucket" "lambda_bucket_producer" {
   force_destroy = true
 }
 
-data "archive_file" "lambda_producer" {
+data "archive_file" "lambda_producer_file" {
   type = "zip"
 
   source_dir  = "../files/producer"
   output_path = "../files/producer.zip"
 }
 
-resource "aws_s3_bucket_object" "lambda_producer" {
+resource "aws_s3_bucket_object" "lambda_producer_object" {
   bucket = aws_s3_bucket.lambda_bucket_producer.id
 
   key    = "producer.zip"
-  source = data.archive_file.lambda_producer.output_path
-  etag = filemd5(data.archive_file.lambda_producer.output_path)
+  source = data.archive_file.lambda_producer_file.output_path
+  etag = filemd5(data.archive_file.lambda_producer_file.output_path)
 }
 resource "aws_s3_bucket" "lambda_bucket_consumer" {
   bucket = random_pet.lambda_bucket_name.id
@@ -32,18 +32,18 @@ resource "aws_s3_bucket" "lambda_bucket_consumer" {
   acl           = "private"
   force_destroy = true
 }
-data "archive_file" "lambda_consumer" {
+data "archive_file" "lambda_consumer_file" {
   type = "zip"
 
   source_dir  = "../files/consumer"
   output_path = "../files/consumer.zip"
 }
 
-resource "aws_s3_bucket_object" "lambda_consumer" {
+resource "aws_s3_bucket_object" "lambda_consumer_object" {
   bucket = aws_s3_bucket.lambda_bucket_consumer.id
 
   key    = "consumer.zip"
-  source = data.archive_file.lambda_consumer.output_path
-  etag   = filemd5(data.archive_file.lambda_consumer.output_path)
+  source = data.archive_file.lambda_consumer_file.output_path
+  etag   = filemd5(data.archive_file.lambda_consumer_file.output_path)
 
 }
