@@ -7,8 +7,8 @@ output "lambda_consumer" {
 }
 
 output "lambda_producer_file" {
-  value = module.s3_vimcar.archive_file.lambda_producer_file.output_base64sha256
+  value = aws_s3_bucket_object.lambda_producer_object.output_base64sha256
 }
 output "lambda_consumer_file" {
-  value = module.s3_vimcar.archive_file.lambda_consumer_file.output_base64sha256
+  value = aws_s3_bucket_object.lambda_consumer_object.output_base64sha256
 }
