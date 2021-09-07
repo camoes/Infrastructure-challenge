@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 variable "source_code_hash_producer" {
-      type = "string"
+      type = string
 }
 
 resource "aws_lambda_function" "producer" {
