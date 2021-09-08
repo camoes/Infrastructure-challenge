@@ -56,12 +56,6 @@ resource "aws_api_gateway_integration" "producer_integration" {
 }
 
 //Route the response to the ProducerLambda function
-resource "aws_apigatewayv2_route" "producer_route" {
-  api_id = aws_api_gateway_rest_api.lambda.id
-
-  route_key = "$default" //This should be changed for the desired endpoint to trigger de request for the lambda, which hasn't been defined 
-  target    = "integrations/${aws_api_gateway_integration.producer_integration.id}"
-}
 resource "aws_cloudwatch_log_group" "api_gw" {
   name = "/aws/api_gw/${aws_api_gateway_rest_api.lambda.name}"
 
