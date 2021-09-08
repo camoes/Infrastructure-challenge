@@ -4,12 +4,11 @@ import boto3, json
 def lambda_handler(event, context):
 
         lambda_client = boto3.client('lambda')
-        data = json.loads(event)
-        body = data['data']
+        data = json.dumps(context["data"])
 
         response = lambda_client.invoke(
                 FunctionName='arn:aws:lambda:eu-west-1:251673427141:function:consumer_lambda',
-                Payload=json.dumps(body),
+                Payload=json.dumps(data),
                 )
         print(response['Payload'])
         print(response['Payload'].read().decode("utf-8"))
