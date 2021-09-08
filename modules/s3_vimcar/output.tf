@@ -8,11 +8,11 @@ output "lambda_consumer" {
 
 
 output "lambda_consumer_key" {
-  value = aws_s3_bucket_object.lambda_producer_object.key
+  value = aws_s3_bucket_object.lambda_producer_object.id
 }
 
 output "lambda_producer_key" {
-  value = aws_s3_bucket_object.lambda_consumer_object.key
+  value = aws_s3_bucket_object.lambda_consumer_object.id
 }
 
 output "lambda_producer_file" {
