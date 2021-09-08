@@ -37,7 +37,7 @@ module "apigateway" {
 }
 
 
-//module "cloudwatch" {
-//  source = "./modules/cloudwatch-metrics"
-//}
+module "cloudwatch" {
+  source = "./modules/cloudwatch-metrics"
+}
 
