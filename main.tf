@@ -1,19 +1,10 @@
 # Require TF version to be same as or greater than 0.12.13
 terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.48.0"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = "~> 3.1.0"
-    }
-    archive = {
-      source  = "hashicorp/archive"
-      version = "~> 2.2.0"
-    }
-  }
+  provider "aws" {
+  version = "3.10.0"
+  region  = "eu-west-1"
+  profile = "default"
+}
   required_version = ">=0.12.13"
   
   backend "s3" {
