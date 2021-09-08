@@ -22,9 +22,9 @@ module "lambdas_vimcar" {
 
 }
 
-module "apigateway" {
-  source = "./modules/apigateway"
-}
+//module "apigateway" {
+//  source = "./modules/apigateway"
+//}
 
 
 //module "cloudwatch" {
