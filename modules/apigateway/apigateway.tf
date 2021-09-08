@@ -11,33 +11,6 @@ resource "aws_api_gateway_resource" "the" {
   path_part   = "example"
 }
 
-
-resource "aws_apigatewayv2_stage" "lambda" {
-  api_id = aws_api_gateway_rest_api.lambda.id
-
-  name        = "serverless_lambda_stage"
-  auto_deploy = true
-
-//Configure log format for the request to the apigateway
-  access_log_settings {
-    destination_arn = aws_cloudwatch_log_group.api_gw.arn
-
-    format = jsonencode({
-      requestId               = "$context.requestId"
-      sourceIp                = "$context.identity.sourceIp"
-      requestTime             = "$context.requestTime"
-      protocol                = "$context.protocol"
-      httpMethod              = "$context.httpMethod"
-      resourcePath            = "$context.resourcePath"
-      routeKey                = "$context.routeKey"
-      status                  = "$context.status"
-      responseLength          = "$context.responseLength"
-      integrationErrorMessage = "$context.integrationErrorMessage"
-      }
-    )
-  }
-}
-
 resource "aws_api_gateway_model" "the" {
   rest_api_id  = aws_api_gateway_rest_api.lambda.id
   name         = "POSTExampleRequestModelExample"
@@ -98,17 +71,6 @@ resource "aws_lambda_permission" "api_gw" {
   function_name = var.function_name_producer
   principal     = "apigateway.amazonaws.com"
   source_arn = "${aws_api_gateway_rest_api.lambda.arn}/*/*"
-}
-
-resource "aws_api_gateway_method_settings" "all" {
-  rest_api_id = aws_api_gateway_rest_api.lambda.id
-  stage_name  = aws_apigatewayv2_stage.lambda.name
-  method_path = "*/*"
-
-  settings {
-    metrics_enabled = true
-    logging_level   = "INFO"
-  }
 }
 
 //
