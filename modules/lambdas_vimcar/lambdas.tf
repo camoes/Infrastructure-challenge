@@ -38,8 +38,9 @@ resource "aws_cloudwatch_log_group" "consumer" {
   retention_in_days = 30
 }
 
-data "aws_lambda_function" "existing" {
+data "aws_lambda_function" "my_function_invoke_lambda" {
   function_name = "producer"
+  qualifier = "invoke_lambda"
 }
 
 
