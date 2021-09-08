@@ -16,5 +16,14 @@ variable "aws_region" {
 }
 variable "source_code_hash_producer" {
   type = string
+}
+variable "source_code_hash_consumer" {
+  type = string
+}
+variable "lambda_bucket_consumer" {
+  type = string
+}
 
+variable "lambda_bucket_producer" {
+  type = string
 }

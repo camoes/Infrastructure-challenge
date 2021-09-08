@@ -4,11 +4,12 @@ provider "aws" {
 }
 
 resource "aws_lambda_function" "producer" {
-  function_name = "lambda_producer"
+  
 
 
-  s3_bucket = "lambda-bucket-producer"
+  s3_bucket = var.lambda_bucket_producer
   s3_key    = "lambda_producer_object"
+  source_code_hash = var.source_code_hash_producer
 
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
@@ -17,9 +18,11 @@ resource "aws_lambda_function" "producer" {
   role = aws_iam_role.lambda_exec.arn
 }
 resource "aws_lambda_function" "consumer" {
-  function_name = "lambda_consumer"
-  s3_bucket = "lambda-bucket-consumer"
+  
+  s3_bucket = var.lambda_bucket_consumer
   s3_key    = "lambda_producer_object"
+  source_code_hash = var.source_code_hash_consumer
+
 
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
