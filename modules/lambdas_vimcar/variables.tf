@@ -23,14 +23,13 @@ variable "source_code_hash_consumer" {
 variable "lambda_bucket_consumer" {
   type = string
 }
-
 variable "lambda_bucket_producer" {
   type = string
 }
 
-variable "lambda_bucket_producer_key" {
-  type = string
+variable "lambda_producer_key_file" {
 }
-variable "lambda_bucket_consumer_key" {
-  type = string
+
+variable "lambda_consumer_key_file" {
+  
 }

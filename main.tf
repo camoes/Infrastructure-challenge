@@ -23,6 +23,8 @@ module "lambdas_vimcar" {
   source                    = "./modules/lambdas_vimcar"
   lambda_bucket_producer    = module.s3_vimcar.lambda_producer
   lambda_bucket_consumer    = module.s3_vimcar.lambda_consumer
+  lambda_consumer_key_file  = module.s3_vimcar.lambda_consumer_key_file
+  lambda_producer_key_file  = module.s3_vimcar.lambda_producer_key_file
   source_code_hash_consumer = module.s3_vimcar.lambda_consumer_file
   source_code_hash_producer = module.s3_vimcar.lambda_producer_file
 
