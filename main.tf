@@ -16,12 +16,12 @@ terraform {
   required_version = ">=0.12.13"
 }
 module "s3_vimcar" {
-  source = "./modules/s3_vimcar"
+  source   = "./modules/s3_vimcar"
   provider = aws
 }
 
 module "lambdas_vimcar" {
-  provider = aws
+  provider                  = aws
   source                    = "./modules/lambdas_vimcar"
   lambda_bucket_producer    = module.s3_vimcar.lambda_producer
   lambda_bucket_consumer    = module.s3_vimcar.lambda_consumer
