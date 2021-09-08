@@ -6,7 +6,7 @@ resource "aws_apigatewayv2_api" "lambda" {
   protocol_type = "WEBSOCKET"
 }
 
-resource "aws_apigatewayv2_stage" "lambda_stage" {
+resource "aws_apigatewayv2_stage" "lambda" {
   api_id = aws_apigatewayv2_api.lambda.id
 
   name        = "serverless_lambda_stage"
