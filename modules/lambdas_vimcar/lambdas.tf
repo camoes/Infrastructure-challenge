@@ -7,9 +7,9 @@ resource "aws_lambda_function" "producer" {
   function_name = "producer_lambda"
 
 
-  s3_bucket = "var.lambda_bucket_producer"
+  s3_bucket = var.lambda_bucket_producer
   s3_key    = "lambda_producer_object"
-  source_code_hash = "var.source_code_hash_producer"
+  source_code_hash = var.source_code_hash_producer
 
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
@@ -20,9 +20,9 @@ resource "aws_lambda_function" "producer" {
 resource "aws_lambda_function" "consumer" {
   function_name = "consumer_lambda"
   
-  s3_bucket = "var.lambda_bucket_consumer"
+  s3_bucket = var.lambda_bucket_consumer
   s3_key    = "lambda_producer_object"
-  source_code_hash = "var.source_code_hash_consumer"
+  source_code_hash = var.source_code_hash_consumer
 
 
   handler          = "${var.handler}"
