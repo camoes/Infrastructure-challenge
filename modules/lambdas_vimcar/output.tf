@@ -15,3 +15,8 @@ output "function_name_consumer" {
 
   value = aws_lambda_function.consumer.function_name
 }
+
+output "cloudwatch_lambdas" {
+
+  value = aws_cloudwatch_log_group.consumer.arn
+}

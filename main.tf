@@ -39,5 +39,8 @@ module "apigateway" {
 
 module "cloudwatch" {
   source = "./modules/cloudwatch-metrics"
+  cloudwatch_lambdas         = module.lambdas_vimcar.cloudwatch_lambdas
+  cloudwatch_api             = module.apigateway.cloudwatch_api
+
 }
 

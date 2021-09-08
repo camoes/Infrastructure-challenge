@@ -7,3 +7,10 @@ variable "aws_region" {
   type    = string
   default = "eu-west-1"
 }
+
+variable "cloudwatch_lambdas" {
+  
+}
+variable "cloudwatch_api" {
+  
+}
