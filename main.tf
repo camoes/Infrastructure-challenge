@@ -30,9 +30,11 @@ module "lambdas_vimcar" {
 
 }
 
-//module "apigateway" {
-//  source = "./modules/apigateway"
-//}
+module "apigateway" {
+    source = "./modules/apigateway"
+    function_name_producer = module.lambdas_vimcar.function_name_producer
+    function_name_producer_arn = module.lambdas_vimcar.function_name_producer_arn
+}
 
 
 //module "cloudwatch" {

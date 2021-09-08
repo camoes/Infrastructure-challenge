@@ -40,11 +40,11 @@ resource "aws_apigatewayv2_integration" "producer" {
   source = "../lambdas/lambdas.tf"
   api_id = aws_apigatewayv2_api.lambda.id
 
-  integration_uri    = aws_lambda_function.producer.invoke_arn
+  integration_uri    = var.function_name_producer_arn
   integration_type   = "AWS_PROXY"
   integration_method = "POST"
   request_templates = {                  # Specifing desired json format
-    "application/json" = "${file("../files/api_gateway_body_mapping.json")}"
+    "application/json" = "${file("${path.root}/files/api_gateway_body_mapping.json")}"
   }
 }
 
@@ -69,7 +69,7 @@ resource "aws_lambda_permission" "api_gw" {
   source = "../lambdas/lambdas.tf"
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.producer.function_name
+  function_name = var.function_name_producer
   principal     = "apigateway.amazonaws.com"
 
   source_arn = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"

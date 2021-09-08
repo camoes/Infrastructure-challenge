@@ -38,6 +38,11 @@ resource "aws_cloudwatch_log_group" "consumer" {
   retention_in_days = 30
 }
 
+data "aws_lambda_function" "existing" {
+  function_name = "producer"
+}
+
+
 resource "aws_iam_role" "lambda_exec" {
   name = "serverless_lambda"
 
