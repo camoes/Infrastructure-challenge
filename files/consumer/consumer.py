@@ -7,7 +7,7 @@ logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
     data = event.get('data')
-    resp_dict = json.loads(data)    
+    resp_dict = data['data']
 
 #FizzBuzz section of the stored array 
     for i in range(resp_dict):
