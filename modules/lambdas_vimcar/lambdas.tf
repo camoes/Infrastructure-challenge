@@ -1,14 +1,12 @@
 
-
 terraform {
- required_providers {
-      aws = {
-          version = ">= 2.7.0"
-          source = "hashicorp/aws"
-        }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 2.7.0"
+    }
   }
 }
-
 resource "aws_lambda_function" "producer" {
   function_name = "producer_lambda"
 
