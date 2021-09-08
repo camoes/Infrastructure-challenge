@@ -1,15 +1,6 @@
 provider "aws" {
   region = var.aws_region
 }
-locals {
-  common_tags = {
-    Owner_Name       = "cloud-watch"
-    Line_of_Business = split("-",terraform.workspace)[0]
-    Application_Name = "cloud-watch"
-    Enviroment_Name  = split("-",terraform.workspace)[1]
-  }
-}
-
 
 resource "aws_cloudwatch_dashboard" "main" {
   dashboard_name = "${terraform.workspace}-cloudwatch-main-dashboard"
