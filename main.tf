@@ -1,21 +1,20 @@
-# Require TF version to be same as or greater than 0.12.13
 terraform {
-  required_providers {
-    aws = {
-      version = ">= 2.7.0"
-      source = "hashicorp/aws"
-    }
-  
-  
-  required_version = ">=0.12.13"
+ required_providers {
+      aws = {
+          version = ">= 2.7.0"
+          source = "hashicorp/aws"
+        }
+  }
   backend "s3" {
+    organization = "example_corp"
     bucket         = "vimcar-challenge-tfestate-cmontesinos"
     key            = "terraform.tfstate"
     region         = "eu-west-1"
     dynamodb_table = "aws-locks-cmontesinos"
     encrypt        = true
+  
   }
-}
+   required_version = ">=0.12.13"
 }
 module "s3_vimcar" {
   source = "./modules/s3_vimcar"
