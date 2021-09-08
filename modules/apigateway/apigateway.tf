@@ -43,7 +43,7 @@ resource "aws_api_gateway_model" "the" {
   name         = "POSTExampleRequestModelExample"
   description  = "A JSON schema"
   content_type = "application/json"
-  schema       = file("${path.pwd}/../files/api_gateway_body_mapping.json")
+  schema       = file("${path.cwd}/../files/api_gateway_body_mapping.json")
 }
 resource "aws_api_gateway_request_validator" "the" {
   name                        = "POSTExampleRequestValidator"
