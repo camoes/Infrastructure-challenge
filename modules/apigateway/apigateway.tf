@@ -4,7 +4,6 @@ provider "aws" {
 resource "aws_apigatewayv2_api" "lambda" {
   name          = "serverless_lambda_gw"
   protocol_type = "WEBSOCKET"
-  role = aws_iam_role.apigateway_cloudwatch.arn
 }
 
 resource "aws_apigatewayv2_stage" "lambda" {
