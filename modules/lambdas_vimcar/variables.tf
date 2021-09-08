@@ -27,9 +27,10 @@ variable "lambda_bucket_consumer" {
 variable "lambda_bucket_producer" {
   type = string
 }
-variable "lambda_bucket_producer_key " {
+
+variable "lambda_bucket_producer_key" {
   type = string
 }
-variable "lambda_bucket_consumer_key " {
+variable "lambda_bucket_consumer_key" {
   type = string
 }
