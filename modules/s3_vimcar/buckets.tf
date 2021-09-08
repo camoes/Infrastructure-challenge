@@ -43,4 +43,5 @@ resource "aws_s3_bucket_object" "lambda_consumer_object" {
   source = data.archive_file.lambda_consumer_file.output_path
   etag   = filemd5(data.archive_file.lambda_consumer_file.output_path)
 
+
 }
