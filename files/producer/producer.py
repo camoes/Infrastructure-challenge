@@ -10,7 +10,7 @@ def lambda_handler(event,context):
     # on to the child function
     lambda_payload = event.get('data')
     response = client.invoke(
-        FunctionName = 'arn:aws:lambda:eu-west-1:890277245818:function:consumer_lambda',
+        FunctionName = 'arn:aws:lambda:eu-west-1:251673427141:function:consumer_lambda',
         InvocationType = 'RequestResponse',
         Payload = json.dumps(lambda_payload)
     )
