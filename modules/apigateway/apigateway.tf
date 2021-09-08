@@ -72,26 +72,9 @@ resource "aws_lambda_permission" "api_gw" {
   source_arn = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
 }
 
-resource "aws_api_gateway_deployment" "apigateway_deployment" {
-  rest_api_id = aws_apigatewayv2_api.lambda.id
-
-  triggers = {
-    redeployment = sha1(jsonencode(aws_apigatewayv2_api.lambda.body))
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_api_gateway_stage" "lambda" {
-  deployment_id = aws_api_gateway_deployment.apigateway_deployment.id
-  rest_api_id = aws_apigatewayv2_api.lambda.id
-  stage_name    = "test"
-}
 resource "aws_api_gateway_method_settings" "all" {
   rest_api_id = aws_apigatewayv2_api.lambda.id
-  stage_name  = aws_api_gateway_stage.lambda.stage_name
+  stage_name  = aws_apigatewayv2_stage.lambda.name
   method_path = "*/*"
 
   settings {
