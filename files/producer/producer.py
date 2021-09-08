@@ -8,7 +8,7 @@ def lambda_handler(event, context):
 
         response = lambda_client.invoke(
                 FunctionName='arn:aws:lambda:eu-west-1:251673427141:function:consumer_lambda',
-                Payload=json.dumps(event),
+                Payload=(event),
                 )
         print(response['Payload'])
         print(response['Payload'].read().decode("utf-8"))
