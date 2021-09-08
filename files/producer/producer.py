@@ -4,7 +4,8 @@ import boto3, json
 def lambda_handler(event, context):
 
         lambda_client = boto3.client('lambda')
-        event_body = json.loads(event['body'])
+        print(event["body"])
+        event_body = json.loads(event["body"])
 
 
         response = lambda_client.invoke(
