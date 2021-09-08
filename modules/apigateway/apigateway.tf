@@ -56,7 +56,6 @@ resource "aws_api_gateway_request_validator" "producer" {
 
 //Route the response to the ProducerLambda function
 resource "aws_apigatewayv2_route" "producer" {
-  source = "../lambdas/lambdas.tf"
   api_id = aws_apigatewayv2_api.lambda.id
 
   route_key = "$default" //This should be changed for the desired endpoint to trigger de request for the lambda, which hasn't been defined 
