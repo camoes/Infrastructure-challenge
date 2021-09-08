@@ -6,9 +6,7 @@ logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
-    data = event.get(event)
-    logger.info(data)
-    print(data)
+    data = json.load(event)
 #FizzBuzz section of the stored array 
     for i in data:
         if data[i]%3==0 and data[i]%5==0:
