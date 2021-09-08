@@ -65,11 +65,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2 
     #Before we start the terraform process, we download the artifact from the previous job using the github action REST API https://docs.github.com/en/rest/reference/actions#list-artifacts-for-a-repository
-    - name: Download artifact
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        workflow: main.yml
-        workflow_conclusion: completed
+   #
     # Checkout the repository to the GitHub Actions runner
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
