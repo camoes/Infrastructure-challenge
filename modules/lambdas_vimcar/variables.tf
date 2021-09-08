@@ -5,7 +5,7 @@ variable "handler" {
 }
 
 variable "runtime" {
-  default = "Python 3.9"
+  default = "python3.9"
 }
 
 variable "aws_region" {
