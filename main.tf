@@ -18,7 +18,7 @@ module "lambdas_vimcar" {
   lambda_bucket_producer    = "${module.s3_vimcar.lambda_producer}"
   lambda_bucket_consumer    = "${module.s3_vimcar.lambda_consumer}"
   source_code_hash_consumer = "${module.s3_vimcar.lambda_consumer_file}"
-  source_code_hash_producer = "${module.s3_vimcar.lambda_producer_fil}"
+  source_code_hash_producer = "${module.s3_vimcar.lambda_producer_file}"
 
 }
 
