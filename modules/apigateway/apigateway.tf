@@ -1,3 +1,6 @@
+provider "aws" {
+  region = var.aws_region
+}
 resource "aws_apigatewayv2_api" "lambda" {
   name          = "serverless_lambda_gw"
   protocol_type = "HTTP"

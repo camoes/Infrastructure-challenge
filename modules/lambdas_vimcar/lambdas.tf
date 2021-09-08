@@ -40,7 +40,6 @@ resource "aws_cloudwatch_log_group" "consumer" {
 
 data "aws_lambda_function" "my_function_invoke_lambda" {
   function_name = "producer"
-  qualifier = "invoke_lambda"
 }
 
 
