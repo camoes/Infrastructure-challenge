@@ -6,7 +6,6 @@ terraform {
         }
   }
   backend "s3" {
-    organization = "example_corp"
     bucket         = "vimcar-challenge-tfestate-cmontesinos"
     key            = "terraform.tfstate"
     region         = "eu-west-1"
