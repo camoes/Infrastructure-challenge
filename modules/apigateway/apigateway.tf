@@ -3,7 +3,7 @@ provider "aws" {
 }
 resource "aws_apigatewayv2_api" "lambda" {
   name          = "serverless_lambda_gw"
-  protocol_type = "HTTP"
+  protocol_type = "WEBSOCKET"
 }
 
 resource "aws_apigatewayv2_stage" "lambda" {
@@ -39,7 +39,7 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 }
 
 // we check the request is in the desired json format 
-resource "aws_apigatewayv2_integration" "producer" {
+resource "aws_apigatewayv2_integration" "producer_integration" {
   api_id = aws_apigatewayv2_api.lambda.id
 
   integration_uri    = var.function_name_producer_arn
@@ -50,7 +50,7 @@ resource "aws_apigatewayv2_integration" "producer" {
   }
 }
 
-resource "aws_api_gateway_request_validator" "producer" {
+resource "aws_api_gateway_request_validator" "producer_request_validator" {
   name                        = "POSTProducerRequestValidator"
   rest_api_id                 = aws_apigatewayv2_api.lambda.id
   validate_request_body       = true
@@ -58,7 +58,7 @@ resource "aws_api_gateway_request_validator" "producer" {
 }
 
 //Route the response to the ProducerLambda function
-resource "aws_apigatewayv2_route" "producer" {
+resource "aws_apigatewayv2_route" "producer_route" {
   api_id = aws_apigatewayv2_api.lambda.id
 
   route_key = "$default" //This should be changed for the desired endpoint to trigger de request for the lambda, which hasn't been defined 
