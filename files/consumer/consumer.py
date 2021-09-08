@@ -6,7 +6,7 @@ logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
-    data = event.get('data')
+    data = event.get(event)
     logger.info(data)
     print(data)
 #FizzBuzz section of the stored array 
