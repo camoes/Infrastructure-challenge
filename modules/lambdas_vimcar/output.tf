@@ -1,7 +1,6 @@
 
 output "function_name_producer" {
   description = "Name of the Lambda function producer."
-
   value = aws_lambda_function.producer.function_name
 }
 
