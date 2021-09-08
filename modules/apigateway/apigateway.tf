@@ -1,13 +1,19 @@
 provider "aws" {
   region = var.aws_region
 }
-resource "aws_apigatewayv2_api" "lambda" {
+resource "aws_api_gateway_rest_api" "lambda" {
   name          = "serverless_lambda_gw"
-  protocol_type = "WEBSOCKET"
 }
 
+resource "aws_api_gateway_resource" "the" {
+  rest_api_id = aws_api_gateway_rest_api.lambda.id
+  parent_id   = aws_api_gateway_rest_api.lambda.root_resource_id
+  path_part   = "example"
+}
+
+
 resource "aws_apigatewayv2_stage" "lambda" {
-  api_id = aws_apigatewayv2_api.lambda.id
+  api_id = aws_api_gateway_rest_api.lambda.id
 
   name        = "serverless_lambda_stage"
   auto_deploy = true
@@ -32,23 +38,46 @@ resource "aws_apigatewayv2_stage" "lambda" {
   }
 }
 
-// we check the request is in the desired json format 
-resource "aws_apigatewayv2_integration" "producer_integration" {
-  api_id = aws_apigatewayv2_api.lambda.id
+resource "aws_api_gateway_model" "the" {
+  rest_api_id  = aws_api_gateway_rest_api.lambda.id
+  name         = "POSTExampleRequestModelExample"
+  description  = "A JSON schema"
+  content_type = "application/json"
+  schema       = file("${path.root}/files/api_gateway_body_mapping.json")
+}
+resource "aws_api_gateway_request_validator" "the" {
+  name                        = "POSTExampleRequestValidator"
+  rest_api_id                 = aws_api_gateway_rest_api.lambda.id
+  validate_request_body       = true
+  validate_request_parameters = false
+}
 
-  integration_uri    = var.function_name_producer_arn
-  integration_type   = "AWS_PROXY"
-  integration_method = "POST"
-  request_templates = {                  # Specifing desired json format
-    "application/json" = "${path.root}/files/api_gateway_body_mapping.json"
+resource "aws_api_gateway_method" "the" {
+  rest_api_id          = aws_api_gateway_rest_api.lambda.id
+  resource_id          = aws_api_gateway_resource.the.id
+  authorization        = "NONE"
+  http_method          = "POST"
+  request_validator_id = aws_api_gateway_request_validator.the.id
+
+  request_models = {
+    "application/json" = aws_api_gateway_model.the.name
   }
 }
 
-resource "aws_api_gateway_request_validator" "producer_request_validator" {
-  name                        = "POSTProducerRequestValidator"
-  rest_api_id                 = aws_apigatewayv2_api.lambda.id
-  validate_request_body       = true
-  validate_request_parameters = false
+resource "aws_api_gateway_method_response" "response_200" {
+  rest_api_id = aws_api_gateway_rest_api.lambda.id
+  resource_id = aws_api_gateway_resource.the.id
+  http_method = aws_api_gateway_method.the.http_method
+  status_code = "200"
+}
+
+
+// we check the request is in the desired json format 
+resource "aws_apigatewayv2_integration" "producer_integration" {
+  api_id = aws_api_gateway_rest_api.lambda.id
+  integration_uri    = var.function_name_producer_arn
+  integration_type   = "AWS_PROXY"
+  integration_method = "POST"
 }
 
 //Route the response to the ProducerLambda function
