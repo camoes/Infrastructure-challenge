@@ -1,12 +1,6 @@
 
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 2.7.0"
-      region  = "eu-west-1"
-    }
-  }
+provider "aws" {
+  region = var.aws_region
 }
 resource "aws_s3_bucket" "lambda_bucket_producer" {
   bucket = "lambda-bucket-producer"
