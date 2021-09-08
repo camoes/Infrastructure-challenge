@@ -5,6 +5,7 @@ import json
 def lambda_handler(event, context):
 
         lambda_client = boto3.client('lambda')
+        data = event['Records']
         data = json.loads(event)
         body = data['data']
 
