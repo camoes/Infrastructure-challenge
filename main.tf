@@ -16,7 +16,7 @@ terraform {
   required_version = ">=0.12.13"
 }
 module "s3_vimcar" {
-  source   = "./modules/s3_vimcar"
+  source = "./modules/s3_vimcar"
 }
 
 module "lambdas_vimcar" {
