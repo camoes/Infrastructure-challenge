@@ -32,12 +32,6 @@ resource "aws_apigatewayv2_stage" "lambda" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "api_gw" {
-  name = "/aws/api_gw/${aws_apigatewayv2_api.lambda.name}"
-
-  retention_in_days = 30
-}
-
 // we check the request is in the desired json format 
 resource "aws_apigatewayv2_integration" "producer_integration" {
   api_id = aws_apigatewayv2_api.lambda.id
@@ -64,8 +58,11 @@ resource "aws_apigatewayv2_route" "producer_route" {
   route_key = "$default" //This should be changed for the desired endpoint to trigger de request for the lambda, which hasn't been defined 
   target    = "integrations/${aws_apigatewayv2_integration.producer_integration.id}"
 }
+resource "aws_cloudwatch_log_group" "api_gw" {
+  name = "/aws/api_gw/${aws_apigatewayv2_api.lambda.name}"
 
-
+  retention_in_days = 30
+}
 resource "aws_lambda_permission" "api_gw" {
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
