@@ -4,8 +4,7 @@ import boto3, json
 def lambda_handler(event, context):
 
         lambda_client = boto3.client('lambda')
-        result = [ each[0]['value'][9:-1] for each in event ]
-        data = json.loads(result)
+        data = json.loads(event)
         body = data['data']
 
         response = lambda_client.invoke(
@@ -14,3 +13,4 @@ def lambda_handler(event, context):
                 )
         print(response['Payload'])
         print(response['Payload'].read().decode("utf-8"))
+
