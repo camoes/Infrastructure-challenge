@@ -1,7 +1,7 @@
 //Variables used in the repo
 
 variable "handler" {
-  default = "lambda.handler"
+  default = "lambda.lambda_handler"
 }
 
 variable "runtime" {
