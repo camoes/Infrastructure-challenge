@@ -50,7 +50,7 @@ resource "aws_apigatewayv2_integration" "producer" {
 
 resource "aws_api_gateway_request_validator" "producer" {
   name                        = "POSTProducerRequestValidator"
-  rest_api_id                 = aws_api_gateway_rest_api.producer.id
+  rest_api_id                 = aws_apigatewayv2_api.lambda.id
   validate_request_body       = true
   validate_request_parameters = false
 }
@@ -66,7 +66,6 @@ resource "aws_apigatewayv2_route" "producer" {
 
 
 resource "aws_lambda_permission" "api_gw" {
-  source = "../lambdas/lambdas.tf"
   statement_id  = "AllowExecutionFromAPIGateway"
   action        = "lambda:InvokeFunction"
   function_name = var.function_name_producer
