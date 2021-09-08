@@ -1,7 +1,7 @@
+
 provider "aws" {
   region = var.aws_region
 }
-
 resource "aws_s3_bucket" "lambda_bucket_producer" {
   bucket = "lambda-bucket-producer"
 
