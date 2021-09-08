@@ -91,7 +91,7 @@ resource "aws_api_gateway_stage" "lambda" {
 }
 resource "aws_api_gateway_method_settings" "all" {
   rest_api_id = aws_apigatewayv2_api.lambda.id
-  stage_name  = aws_apigatewayv2_stage.lambda.stage_name
+  stage_name  = aws_api_gateway_stage.lambda.stage_name
   method_path = "*/*"
 
   settings {
