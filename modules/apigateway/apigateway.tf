@@ -46,11 +46,13 @@ resource "aws_api_gateway_method_response" "response_200" {
 
 
 // we check the request is in the desired json format 
-resource "aws_apigatewayv2_integration" "producer_integration" {
-  api_id = aws_api_gateway_rest_api.lambda.id
-  integration_uri    = var.function_name_producer_arn
-  integration_type   = "AWS_PROXY"
-  integration_method = "POST"
+resource "aws_api_gateway_integration" "producer_integration" {
+  rest_api_id             = aws_api_gateway_rest_api.lambda.id
+  resource_id = aws_api_gateway_resource.the.id
+  http_method = aws_api_gateway_method.the.http_method
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY"
+  uri                     = var.function_name_producer_arn
 }
 
 //Route the response to the ProducerLambda function
@@ -58,7 +60,7 @@ resource "aws_apigatewayv2_route" "producer_route" {
   api_id = aws_api_gateway_rest_api.lambda.id
 
   route_key = "$default" //This should be changed for the desired endpoint to trigger de request for the lambda, which hasn't been defined 
-  target    = "integrations/${aws_apigatewayv2_integration.producer_integration.id}"
+  target    = "integrations/${aws_api_gateway_integration.producer_integration.id}"
 }
 resource "aws_cloudwatch_log_group" "api_gw" {
   name = "/aws/api_gw/${aws_api_gateway_rest_api.lambda.name}"
