@@ -11,7 +11,6 @@ resource "aws_lambda_function" "producer" {
   handler          = "${var.handler}"
   runtime          = "${var.runtime}"
 
-
   role = aws_iam_role.lambda_exec.arn
 }
 resource "aws_lambda_function" "consumer" {

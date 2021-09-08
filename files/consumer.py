@@ -16,5 +16,4 @@ def lambda_handler(event, context):
             data[i] = "buzz"
     logger.info(data)
 
-
-#Store the array in Cloudwatch
+#Store the array in Cloudwatc
