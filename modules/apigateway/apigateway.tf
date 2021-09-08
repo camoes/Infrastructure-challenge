@@ -47,7 +47,7 @@ resource "aws_api_gateway_method_response" "response_200" {
 
 // we check the request is in the desired json format 
 resource "aws_api_gateway_integration" "producer_integration" {
-  rest_api_id             = aws_api_gateway_rest_api.lambda.id
+  rest_api_id = aws_api_gateway_rest_api.lambda.id
   resource_id = aws_api_gateway_resource.the.id
   http_method = aws_api_gateway_method.the.http_method
   integration_http_method = "POST"
@@ -61,12 +61,15 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 
   retention_in_days = 30
 }
-resource "aws_lambda_permission" "api_gw" {
-  statement_id  = "AllowExecutionFromAPIGateway"
+resource "aws_lambda_permission" "lambda_permission" {
+  statement_id  = "AllowMyDemoAPIInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = var.function_name_producer
+  function_name = "producer_lambda"
   principal     = "apigateway.amazonaws.com"
-  source_arn = "${aws_api_gateway_rest_api.lambda.arn}/*/*"
+
+  # The /*/*/* part allows invocation from any stage, method and resource path
+  # within API Gateway REST API.
+  source_arn = "${aws_api_gateway_rest_api.lambda.execution_arn}/*/*/*"
 }
 
 //
