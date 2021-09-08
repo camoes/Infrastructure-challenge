@@ -4,7 +4,7 @@ def lambda_handler (event, context):
     #his section launches the lambda functtion consumer and send the event as data payload
     lambda_client = boto3.client('lambda')
     lambda_payload = event.get('data')
-    lambda_client.invoke(FunctionName='consumer', 
+    lambda_client.invoke(FunctionName='consumer_lambda', 
                         InvocationType='Event',
                         Payload=lambda_payload)
     response = {
