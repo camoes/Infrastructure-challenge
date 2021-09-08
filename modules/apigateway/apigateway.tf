@@ -37,14 +37,13 @@ resource "aws_cloudwatch_log_group" "api_gw" {
 
 // we check the request is in the desired json format 
 resource "aws_apigatewayv2_integration" "producer" {
-  source = "../lambdas/lambdas.tf"
   api_id = aws_apigatewayv2_api.lambda.id
 
   integration_uri    = var.function_name_producer_arn
   integration_type   = "AWS_PROXY"
   integration_method = "POST"
   request_templates = {                  # Specifing desired json format
-    "application/json" = "${file("${path.root}/files/api_gateway_body_mapping.json")}"
+    "application/json" = "${path.root}/files/api_gateway_body_mapping.json"
   }
 }
 
