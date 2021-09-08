@@ -8,13 +8,13 @@ logger.setLevel(logging.INFO)
 def lambda_handler(event, context):
     event_data = event["data"]
     #FizzBuzz section of the stored array 
-    for i in event_data:
-        if event_data[i]%3==0 and event_data[i]%5==0:
-            event_data[i] = "fizzbuzz"
-        elif event_data[i]%3==0:
-            event_data[i] = "fizz"
-        elif event_data[i]%5==0:
-            event_data[i] = "buzz"
+    for index,  value in enumerate(event_data):
+        if value%3==0 and value%5==0:
+           event_data[index]  = "fizzbuzz"
+        elif value%3==0:
+            event_data[index] = "fizz"
+        elif value%5==0:
+            event_data[index] = "buzz"
+    print(event_data)
     logger.info(event_data)
-
 #Store the array in Cloudwatc
