@@ -30,7 +30,7 @@ Of course all this logic can be re-used for future scenarios keeping a consisten
 Of course this is a first stage and only a challenge, for a full production environment a couple of things should be considered to addopt:
 
 - Environments control: This solution does not take into consideration stages of development, such as dev , int or such. A proper solution should be settled around those principles with different considerations for each and every one. For this porpuse I would propouse a tool called [Terragrunt](https://terragrunt.gruntwork.io/ "Terragrunt") which would enable us to keep our terraform code dry and reusable for differente applications and environments.
-- Secret management: With only two secrets and the scope of this exercise , Github was more than enough, but if this should be take into consideration for future environments , a great tool to keep secrets would be [Vault](hhttps://www.vaultproject.io/ "Vault")
+- Secret management: With only two secrets and the scope of this exercise , Github was more than enough, but if this should be take into consideration for future environments , a great tool to keep secrets would be [Vault](https://www.vaultproject.io/ "Vault")
 - Observiability: The terraform cloudwatch dashboard definitions still needs to be improved, and it could show insufficient for a proper solution in the future, for that there are projects like [Prometheus with Grafana](https://prometheus.io/docs/visualization/grafana/ "Prometheus with Grafana")that could provide us an autonomiy and configuration beyond of the scope of the managed service.
 
 ## Conclusions
