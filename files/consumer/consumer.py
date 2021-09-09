@@ -6,7 +6,7 @@ logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
-    event_data = event["data"]
+    event_data = event
 
     #FizzBuzz section of the stored array 
     for index,  value in enumerate(event_data):
@@ -17,4 +17,6 @@ def lambda_handler(event, context):
         elif value%5==0:
             event_data[index] = "buzz"
     logger.info(event_data)
+    return {'statusCode': 200, 'body': json.dumps({'message': 'successful lambda function call'+ event_data }), 'headers': {'Access-Control-Allow-Origin': '*'}}
+
 #Store the array in Cloudwatc
