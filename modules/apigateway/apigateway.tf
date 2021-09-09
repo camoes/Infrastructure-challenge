@@ -10,7 +10,7 @@ resource "aws_api_gateway_resource" "the" {
   parent_id   = aws_api_gateway_rest_api.lambda.root_resource_id
   path_part   = "example"
 }
-
+//Check the body of the request, if it meet our standards
 resource "aws_api_gateway_model" "the" {
   rest_api_id  = aws_api_gateway_rest_api.lambda.id
   name         = "POSTExampleRequestModelExample"
@@ -18,6 +18,8 @@ resource "aws_api_gateway_model" "the" {
   content_type = "application/json"
   schema       = file("${path.cwd}/files/api_gateway_body_mapping.json")
 }
+
+//Ensure only Post is requested
 resource "aws_api_gateway_request_validator" "the" {
   name                        = "POSTExampleRequestValidator"
   rest_api_id                 = aws_api_gateway_rest_api.lambda.id
