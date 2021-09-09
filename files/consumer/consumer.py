@@ -17,6 +17,7 @@ def lambda_handler(event, context):
         elif value%5==0:
             event_data[index] = "buzz"
     logger.info(event_data)
-    return {'statusCode': 200, 'body': json.dumps({'message': 'successful lambda function call'+ event_data }), 'headers': {'Access-Control-Allow-Origin': '*'}}
+    return {'statusCode': 200, 'body': json.dumps({'message': 'successful lambda function call' }), 'headers': {'Access-Control-Allow-Origin': '*'}}
+
 
 #Store the array in Cloudwatc
