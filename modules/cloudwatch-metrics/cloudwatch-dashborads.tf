@@ -2,6 +2,7 @@ provider "aws" {
   region = var.aws_region
 }
 
+//this section must be improved, atm it has the bare minimum and its very barebones
 resource "aws_cloudwatch_dashboard" "main" {
   dashboard_name = "${terraform.workspace}-cloudwatch-main-dashboard"
   
@@ -73,46 +74,12 @@ resource "aws_cloudwatch_dashboard" "main" {
         "region": "ap-southeast-1",
         "title": "Lambda|Main Stats"
       }
-    },
-    {
-      "type": "metric",
-      "x": 8,
-      "y": 24,
-      "width": 8,
-      "height": 6,
-      "properties": {
-        "metrics": [
-          [
-            "AWS/S3",
-            "BucketSizeBytes"
-          ],
-          [
-            "AWS/S3",
-            "NumberOfObjects"
-          ],
-          [
-            "AWS/S3",
-            "DeleteRequests"
-          ],
-          [
-            "AWS/S3",
-            "5xxErrors"
-          ],
-          [
-            "AWS/S3",
-            "TotalRequestLatency"
-          ]
-        ],
-        "period": 60,
-        "stat": "Maximum",
-        "region": "ap-southeast-1",
-        "title": "S3|Main Stats"
-      }
     }
   ]
 }
 EOF
 
 }
+
 
  

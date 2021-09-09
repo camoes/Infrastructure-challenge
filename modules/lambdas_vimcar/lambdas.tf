@@ -1,6 +1,8 @@
 provider "aws" {
   region = var.aws_region
 }
+
+//Lambda definitions,
 resource "aws_lambda_function" "producer" {
   function_name = "producer_lambda"
 
@@ -37,7 +39,7 @@ resource "aws_cloudwatch_log_group" "consumer" {
 
   retention_in_days = 30
 }
-
+//this is needed for api-gateway integration
 data "aws_lambda_function" "my_function_invoke_lambda" {
   function_name = "producer_lambda"
 }
