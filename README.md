@@ -32,7 +32,3 @@ Certainly, this is the first stage and only a challenge, for a full production e
 - Environments control: This solution does not take into consideration stages of development, such as dev, int, or such. A proper solution should be settled around those principles with different considerations for each and every one. For this purpose, I would propose a tool called [Terragrunt](https://terragrunt.gruntwork.io/ "Terragrunt") which would enable us to keep our terraform code dry and reusable for different applications and environments.
 - Secret management: With only two secrets and the scope of this exercise, Github was more than enough, but if this should be taken into consideration for future environments, a great tool to keep secrets would be [Vault](https://www.vaultproject.io/ "Vault")
 - Observability: The terraform cloudwatch dashboard definitions still need to be improved, and it could show insufficient for a proper solution in the future, for that there are projects like [Prometheus with Grafana](https://prometheus.io/docs/visualization/grafana/ "Prometheus with Grafana")that could provide us autonomy and configuration beyond of the scope of the managed service.
-
-## Conclusions
-
-It has been a fun challenge, I tried to show the principles regarding the infrastructure definition, that I like to follow and share  I would be more than happy to discuss with you any doubts that you have regarding this challenge and really hope to hear from you soon!
