@@ -1,4 +1,4 @@
-# Vimcar-Infrastructure-Challenge by Carlos Montesinos Estrada
+# Infrastructure-Challenge by Carlos Montesinos Estrada
 
 In this repo we will find all the needed files to succeed in the desired goal settled by this challenge. The main focus has been to keep a modular design and create a reusable infrastructure for future projects, as we will see this can be heavily increased in the future with the usage of a couple of different suggestions.
 
