@@ -20,7 +20,7 @@ module "s3" {
 
 module "lambdas" {
 
-  source                    = "./modules/lambdas_vimcar"
+  source                    = "./modules/lambdas_"
   lambda_bucket_producer    = module.s3.lambda_producer
   lambda_bucket_consumer    = module.s3.lambda_consumer
   lambda_consumer_key_file  = module.s3.lambda_consumer_key_file
